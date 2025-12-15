@@ -125,4 +125,23 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Signup action.
+     *
+     * @return Response|string
+     */
+    public function actionSignup()
+    {
+        $model = new \app\models\SignupForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Регистрация успешна! Теперь вы можете войти.');
+            return $this->redirect(['login']);
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
 }
