@@ -26,19 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php if ($model->image): ?>
-        <p>
-            <img src="<?= $model->image ?>" style="max-width:200px; border-radius: 10px;">
-        </p>
-    <?php endif; ?>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'title',
             'description:ntext',
-            'image',
             'price',
             'category_id',
         ],

@@ -10,7 +10,6 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property string|null $image
  * @property int $price
  * @property int $category_id
  *
@@ -34,12 +33,11 @@ class Course extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'image'], 'default', 'value' => null],
+            [['description'], 'default', 'value' => null],
             [['title', 'price', 'category_id'], 'required'],
             [['description'], 'string'],
             [['price', 'category_id'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
-            [['image'], 'url'],
+            [['title'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -53,7 +51,6 @@ class Course extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'description' => 'Description',
-            'image' => 'Image',
             'price' => 'Price',
             'category_id' => 'Category ID',
         ];
