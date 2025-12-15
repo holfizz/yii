@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="course-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -19,6 +19,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'category_id')->textInput() ?>
+
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
+
+    <?php if ($model->image): ?>
+        <div class="mb-3">
+            <p>Текущее изображение:</p>
+            <img src="/<?= $model->image ?>" width="150">
+        </div>
+    <?php endif; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
