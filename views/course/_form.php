@@ -20,6 +20,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category_id')->textInput() ?>
 
+    <?= $form->field($model, 'image')->textInput(['placeholder' => 'https://example.com/image.jpg']) ?>
+
+    <?php if ($model->image): ?>
+        <div class="mb-3">
+            <img src="<?= Html::encode($model->image) ?>" style="max-width: 200px; border-radius: 8px;">
+        </div>
+    <?php endif; ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

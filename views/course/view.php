@@ -26,12 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <?php if ($model->image): ?>
+        <div class="mb-3">
+            <img src="<?= Html::encode($model->image) ?>" style="max-width: 300px; border-radius: 10px;">
+        </div>
+    <?php endif; ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'title',
             'description:ntext',
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => $model->image ? '<a href="' . Html::encode($model->image) . '" target="_blank">' . Html::encode($model->image) . '</a>' : 'нет',
+            ],
             'price',
             'category_id',
         ],

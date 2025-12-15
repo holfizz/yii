@@ -32,6 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description:ntext',
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return $model->image
+                        ? '<img src="' . Html::encode($model->image) . '" style="width: 70px; border-radius: 6px;">'
+                        : '<span style="color: #888;">нет</span>';
+                },
+            ],
             'price',
             //'category_id',
             [
